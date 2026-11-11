@@ -16,10 +16,18 @@ export function showRegisterView(container, presenter) {
 
                 <header class="auth-header">
                     <h1>Crear cuenta</h1>
-                    <p>Regístrate para comenzar</p>
+                    <p>Regístrate para comenzar IE San Jeronimo</p>
                 </header>
 
                 <form id="register-form" class="auth-form">
+                    <label for="institucion">Institución Educativa</label>
+                    <select id="institucion" name = "institucion" required>
+                        <option value="" disabled selected>Selecciona tu institución educativa</option>
+                        <option value="IE San Jeronimo">IE San Jeronimo</option>
+                        <option value "IE San Lorenzo">IE San Lorenzo</option> 
+
+                    </select>
+
 
                     <div class="form-group">
                         <label for="register-name">
@@ -30,39 +38,64 @@ export function showRegisterView(container, presenter) {
                             type="text"
                             id="register-name"
                             name="name"
-                            placeholder="Tu nombre"
+                            placeholder="ingrese su nombre"
                             required
                         >
                     </div>
 
-                    <div class="form-group">
-                        <label for="register-email">
-                            Correo electrónico
+                    
+                    <label for="usuario">Tipo de Usuario</label>
+                    <select id="usuario" name= "usuario" required>
+                        <option value="" disabled selected> Su usuario es: </option>
+                        <option value="Profesor">Profesor</option>
+                        <option value "Estudiante">Estudiante</option>
+                        <option value "Otro">Otro</option>
+                    </select>
+
+                    <label for="genero">genero</label>
+                    <select id="genero" name= "genero" required>
+                        <option value="" disabled selected>Seleccione su genero: </option>
+                        <option value="Femenino">Femenino</option>
+                        <option value "Masculino">Masculino</option>
+                    </select>
+
+                     
+                        <div class = "form-group">
+                            <label for = "register-email">
+                              correo electronico 
                         </label>
 
                         <input
-                            type="email"
+                            type="text"
                             id="register-email"
                             name="email"
-                            placeholder="correo@ejemplo.com"
+                            placeholder="hdhahsd@gmail.com"
                             required
                         >
                     </div>
-
-                    <div class="form-group">
-                        <label for="register-password">
-                            Contraseña
+                    
+                   <div class = "form-group">
+                            <label for = "register-password">
+                              contraseña 
                         </label>
 
                         <input
                             type="password"
                             id="register-password"
                             name="password"
-                            placeholder="Crea una contraseña"
+                            placeholder="crea una contraseña"
                             required
                         >
                     </div>
+                  <div class ="form-group">
+                    <label class="checkbox-container">Activo</label>
+                        <input type="checkbox" id="Activo" name= "Activo" value= "activo" checked>
+                    </label>
 
+                   </div>
+                   
+                   
+                   
                     <button
                         type="submit"
                         class="button button-primary"
@@ -104,11 +137,15 @@ export function showRegisterView(container, presenter) {
         const formData = new FormData(registerForm);
 
         const userData = {
+           institucion: formData.get("institucion"),
             name: formData.get("name"),
+            usuario: formData.get("usuario"),
+            genero: formData.get("genero"),
             email: formData.get("email"),
-            password: formData.get("password")
+            password: formData.get("password"),
+            Activo: formData.get("Activo")
         };
-
+        debugger;
         presenter.register(userData);
     });
 

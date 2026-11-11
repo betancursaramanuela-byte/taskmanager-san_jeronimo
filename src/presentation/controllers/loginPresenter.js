@@ -26,7 +26,7 @@ export class LoginPresenter {
     async login(credentials) {
 
         try {
-
+            debugger;
             const user =
                 await this.loginUser.execute(
                     credentials
