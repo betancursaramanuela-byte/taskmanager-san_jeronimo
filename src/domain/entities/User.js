@@ -22,7 +22,7 @@ export class User {
         genero,
         email,
         passwordHash = null,
-        activo
+        Activo
 
     }) {
         this.id = id;

@@ -98,7 +98,7 @@ export function showRegisterView(container, presenter) {
                    
                     <button
                         type="submit"
-                        class="button button-primary"
+                        class="btn btn-success"
                     >
                         Crear cuenta
                     </button>
@@ -125,6 +125,36 @@ export function showRegisterView(container, presenter) {
                 ></p>
 
             </div>
+
+        <!-- Modal -->
+        <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal-dialog">
+        <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="staticBackdropLabel">Registro Usuario</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+      <p> <strong> institucion</strong><span id = "confirmIE" </span> </p>
+       <p> <strong> name</strong><span id= "confirmnombre" </span> </p>
+        <p> <strong> usuario</strong><span id ="confirmusuario" </span> </p>
+         <p> <strong> genero</strong><span id ="confirmgenero" </span> </p>
+          <p> <strong> email</strong><span id= "confirmcorreo" </span> </p>
+           <p> <strong> password</strong><span id ="confirmcontraseña" </span> </p>
+            <p> <strong> Activo </strong><span id ="confirmactivo" </span> </p>
+           
+            
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" 
+        data-bs-dismiss="modal">Close</button>
+        <button type="button" id="btn-confirmar" class="btn btn-primary">confirmar</button>
+
+      </div>
+    </div>
+  </div>
+</div>
+
         </section>
     `;
 
@@ -135,8 +165,10 @@ export function showRegisterView(container, presenter) {
         event.preventDefault();
 
         const formData = new FormData(registerForm);
-
+        const modalElement = document.getElementById("staticBackdrop");
+        const Modal = new bootstrap.Modal(modalElement);
         const userData = {
+
            institucion: formData.get("institucion"),
             name: formData.get("name"),
             usuario: formData.get("usuario"),
@@ -145,9 +177,32 @@ export function showRegisterView(container, presenter) {
             password: formData.get("password"),
             Activo: formData.get("Activo")
         };
-        debugger;
-        presenter.register(userData);
+
+       document.getElementById("confirmIE").textContent = userData.institucion;
+        document.getElementById("confirmnombre").textContent = userData.name;
+         document.getElementById("confirmusuario").textContent = userData.usuario;
+          document.getElementById("confirmgenero").textContent = userData.genero;
+           document.getElementById("confirmcorreo").textContent = userData.email;
+            document.getElementById("confirmcontraseña").textContent = "*******";
+             document.getElementById("confirmactivo").textContent = userData.Activo;
+
+             registerForm.dataset.userData=JSON.stringify(userData);
+
+             Modal.show();
+             //presenter.register(userData);
+
     });
+    document.getElementById("btn-confirmar").addEventListener("click", ()=>{
+        const userData = JSON.parse(registerForm.dataset.userData);
+
+
+        presenter.register(userData);
+        const modalId = document.getElementById("staticBackdrop");
+        const modal = bootstrap.Modal.getOrCreateInstance(modalId);
+        modal.hide();
+
+    });
+
 
     const loginButton =
         document.getElementById("show-login");
@@ -155,13 +210,18 @@ export function showRegisterView(container, presenter) {
     loginButton.addEventListener("click", () => {
         presenter.showLogin();
     });
+    
 }
 
-export function showRegisterMessage(message) {
+export function showRegisterMessage(message,alert="success") {
     const messageElement =
         document.getElementById("register-message");
 
     if (messageElement) {
-        messageElement.textContent = message;
+        messageElement.innerHTML = `
+        <div class="alert alert-${alert} role="alert">
+          ${message}
+      </div>
+       `  
     }
 }
