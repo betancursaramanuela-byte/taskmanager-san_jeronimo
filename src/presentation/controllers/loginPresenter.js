@@ -13,7 +13,7 @@ import { showLoginMessage } from "../views/loginView.js";
 import { showRegisterView } from "../views/registerView.js";
 import { RegisterPresenter } from "./registerPresenter.js";
 import { showClassView } from "../views/classView.js";
-
+import {showhome} from "../views/home.js"
 export class LoginPresenter {
 
     constructor(container, loginUser, registerUser, classPresenter) {
@@ -31,9 +31,9 @@ export class LoginPresenter {
                 await this.loginUser.execute(
                     credentials
                 );
-            console.log("Usuario autenticado:",user);
+            //console.log("Usuario autenticado:",user);
 
-            showClassView(
+            showhome(
                 this.container,
                 this.classPresenter
             );
@@ -44,20 +44,5 @@ export class LoginPresenter {
                 error.message
             );
         }
-    }
-
-    showRegister() {
-
-        const registerPresenter =
-            new RegisterPresenter(
-                this.container,
-                this.registerUser,
-                this
-            );
-
-        showRegisterView(
-            this.container,
-            registerPresenter
-        );
     }
 }
