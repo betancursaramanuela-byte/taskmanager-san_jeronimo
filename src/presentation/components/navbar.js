@@ -1,6 +1,7 @@
-export function renderNavbar (
-    container,navigate
-)  { container.innerHTML = ` 
+export function renderNavbar (container,navigate) { 
+  
+  
+  container.innerHTML = ` 
 
     <nav class="navbar navbar-expand-lg bg-body-tertiary">
   <div class="container-fluid">
@@ -47,12 +48,14 @@ export function renderNavbar (
 ` ;
 
 
-container.addEventListener("click",(event) => {
+container.addEventListener("click", (event) => {
     
-    const link = event.target.closest("[data-view]");
+    const link = event.target.closest ("[data-view]");
 
     if (!link) return;
+
     event.preventDefault();
+
     navigate(link.dataset.view);
 });
 }

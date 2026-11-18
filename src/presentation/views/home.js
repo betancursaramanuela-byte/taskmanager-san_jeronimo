@@ -1,6 +1,8 @@
-export function showhome (
-    container,presenter
-)  { container.innerHTML = ` 
+export function showHome (
+    container,
+    presenter
+){ 
+  container.innerHTML = ` 
 
     <div id="carouselExampleIndicators" class="carousel slide">
   <div class="carousel-indicators">

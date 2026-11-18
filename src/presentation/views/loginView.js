@@ -137,7 +137,7 @@ export function showLoginView(container, presenter) {
 
     registerButton.addEventListener("click", () => {
         console.log("Presenter en registro:", presenter);
-        presenter.showRegister();
+        presenter.ShowRegister();
     });
 }
 

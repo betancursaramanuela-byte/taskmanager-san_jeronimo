@@ -17,7 +17,7 @@ import { GetClasses } from "./domain/useCases/GetClasses.js";
 import { UpdateClass } from "./domain/useCases/UpdateClass.js";
 import { DeleteClass } from "./domain/useCases/DeleteClass.js";
 import { CreateClass } from "./domain/useCases/CreateClass.js";
-import { showhome } from "./presentation/views/home.js";
+import { showHome } from "./presentation/views/home.js";
 import { renderNavbar } from "./presentation/components/navbar.js";
 import { showClassView } from "./presentation/views/classView.js";
 
@@ -39,10 +39,9 @@ const navbarContainer = document.getElementById("navbar-container");
 
 renderNavbar(navbarContainer,(view)=> {
     switch (view){
-        case"home ":
-        showhome(app);
-        break;
-
+        case "home":
+        showHome(app);
+        break
         case "clases":
             showClassView(app,classPresenter);
             break;
