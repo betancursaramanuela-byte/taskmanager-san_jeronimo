@@ -14,6 +14,7 @@ import { showRegisterView } from "../views/registerView.js";
 import { RegisterPresenter } from "./registerPresenter.js";
 import { showClassView } from "../views/classView.js";
 import {showHome} from "../views/home.js"
+import { showArquitecture } from "../views/arquitecture.js";
 
 export class LoginPresenter {
 
@@ -35,6 +36,11 @@ export class LoginPresenter {
             console.log("Usuario autenticado:",user);
 
             showHome(
+                this.container,
+                this.classPresenter
+            );
+
+             showArquitecture(
                 this.container,
                 this.classPresenter
             );

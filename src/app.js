@@ -20,6 +20,7 @@ import { CreateClass } from "./domain/useCases/CreateClass.js";
 import { showHome } from "./presentation/views/home.js";
 import { renderNavbar } from "./presentation/components/navbar.js";
 import { showClassView } from "./presentation/views/classView.js";
+import {showArquitecture} from "./presentation/views/arquitecture.js"
 
 const passwordHasher = new PasswordHasher();
 
@@ -45,8 +46,13 @@ renderNavbar(navbarContainer,(view)=> {
         case "clases":
             showClassView(app,classPresenter);
             break;
+        case "arquitecture":
+            showArquitecture(app,classPresenter);
+            break;
+
     }
 } )
+
 
 /*
  * Repositorys
